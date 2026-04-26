@@ -46,6 +46,8 @@ def _hash_token(token: str) -> str:
     return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
+
+
 def create_refresh_token(db: Session, user: User) -> str:
     """Create an opaque refresh token, store its hash, return the plaintext token."""
     token = secrets.token_urlsafe(48)
