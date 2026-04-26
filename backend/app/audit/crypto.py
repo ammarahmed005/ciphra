@@ -1,6 +1,7 @@
 """
 AES-GCM encryption for sensitive audit log fields.
 
+
 The proposal calls for "encrypted logging." We use authenticated encryption
 (AES-256-GCM) to protect query/response text in the audit log. The hash chain
 already provides tamper evidence, but encryption ensures that an attacker who
