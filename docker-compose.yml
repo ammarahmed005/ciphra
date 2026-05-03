@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: ciphra_db
+    environment:
+      POSTGRES_USER: chatbot_user
+      POSTGRES_PASSWORD: chatbot_pass
+      POSTGRES_DB: chatbot_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chatbot_user -d chatbot_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: ciphra_backend
+    env_file: ./backend/.env
+    environment:
+      DATABASE_URL: postgresql://chatbot_user:chatbot_pass@db:5432/chatbot_db
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change_me_openssl_rand_hex_32_please}
+      JWT_ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 15
+      REFRESH_TOKEN_EXPIRE_DAYS: 7
+      AUDIT_GENESIS_SEED: ${AUDIT_GENESIS_SEED:-genesis_seed_change_me}
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000,http://localhost
+      LOG_LEVEL: INFO
+      RATE_LIMIT_PER_MINUTE: 60
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: ciphra_frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+
+volumes:
+  db_data:
+    driver: local
