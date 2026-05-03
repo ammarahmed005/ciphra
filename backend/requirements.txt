@@ -14,3 +14,4 @@ openai==1.54.3
 slowapi==0.1.9
 alembic==1.13.3
 email-validator==2.2.0
+ollama
