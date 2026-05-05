@@ -214,29 +214,6 @@ export default function Login() {
               <div style={{ marginBottom: 12 }}>
                 Don't have an account? <Link to="/register">Create one</Link>
               </div>
-              <details style={{ textAlign: 'left' }}>
-                <summary style={{
-                  cursor: 'pointer', fontSize: 12,
-                  color: 'var(--text-muted)', userSelect: 'none',
-                }}>
-                  Demo credentials
-                </summary>
-                <div style={{
-                  marginTop: 10, padding: 12,
-                  background: 'var(--bg-3)',
-                  border: '1px solid var(--border-muted)',
-                  borderRadius: 6,
-                  fontSize: 12,
-                  fontFamily: 'JetBrains Mono, monospace',
-                  color: 'var(--text-muted)',
-                  lineHeight: 1.8,
-                }}>
-                  <div>admin / Adm!nP@ss2026</div>
-                  <div>manager / Mgr!n@ger2026</div>
-                  <div>employee / Emp!oyee@2026</div>
-                  <div>guest / Gue$t!Pass2026</div>
-                </div>
-              </details>
             </div>
           </div>
         </div>
