@@ -8,7 +8,7 @@ const SUGGESTIONS = [
   'Where can I find the employee handbook?',
   'Summarize the leave request process',
   'What is the sprint planning process?',
-]
+  ]
 
 export default function Chat() {
   const { user } = useAuth()
