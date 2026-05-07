@@ -4,7 +4,7 @@
 
 A production-grade reference implementation of the proposal *"Secure AI Chatbot with Role-Based Access Control and Encrypted Logging System"* (Pak-Austria Fachhochschule, Secure Software Design, Semester 6).
 
-CIPHRA is an enterprise AI chatbot that **classifies every query by data sensitivity, enforces role-based access control on responses, blocks prompt-injection attempts, and records every interaction in a tamper-evident SHA-256 hash chain.** Sensitive audit fields are encrypted at rest with AES-256-GCM, the audit table is append-only at both the application and PostgreSQL layers, and the entire authentication stack — from password policy to refresh-token rotation — follows OWASP Cheat Sheet patterns.
+CIPHRA is an enterprise AI chatbot that **classifies every query by data sensitivity, enforces role-based access control on responses, blocks prompt-injection attempts, and records every interaction in a tamper-evident SHA-256 hash chain.** Sensitive audit fields are encrypted at rest with AES-256-GCM, the audit table is append-only at both the application and PostgreSQL layers, and the entire authentication stack from password policy to refresh-token rotation follows OWASP Cheat Sheet patterns.
 
 ---
 
